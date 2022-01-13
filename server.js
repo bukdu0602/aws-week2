@@ -2,18 +2,12 @@ require('dotenv').config()
 const express = require("express")
 const multer = require("multer")
 const fs = require('fs')
-
 const database = require('./database')
-
+const path = require('path')
 const app = express()
 const upload = multer({dest: 'images/'})
+app.use(express.static(path.join(__dirname, "build")))
 
-
-
-
-app.get("/", (req, res) => {
-    res.send("hello world")
-})
 
 app.get('/images/:imageName', (req, res) => {
     // do a bunch of if statements to make sure the user is 
